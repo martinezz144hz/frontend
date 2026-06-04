@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restaurante XYZ — Panel de Gestión</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+ 
+  <!-- ===== PANTALLA DE LOGIN ===== -->
+  <div id="login-screen" class="screen active">
+    <div class="login-box">
+      <div class="login-logo">🍽️</div>
+      <h1 class="login-title">Restaurante XYZ</h1>
+      <p class="login-subtitle">Panel de Gestión</p>
+ 
+      <div id="login-error" class="alert alert-error hidden"></div>
+ 
+      <div class="form-group">
+        <label for="login-user">Usuario o correo</label>
+        <input type="text" id="login-user" placeholder="usuario@email.com" />
+      </div>
+      <div class="form-group">
+        <label for="login-pass">Contraseña</label>
+        <input type="password" id="login-pass" placeholder="••••••••" />
+      </div>
+      <button id="btn-login" class="btn btn-primary btn-full">Ingresar</button>
+    </div>
+  </div>
+ 
+  <!-- ===== PANTALLA PRINCIPAL ===== -->
+  <div id="main-screen" class="screen hidden">
+ 
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-logo">🍽️</span>
+        <span class="sidebar-title">Restaurante XYZ</span>
+      </div>
+ 
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-module="mesas">
+          <span class="nav-icon">🪑</span> Mesas
+        </a>
+        <a href="#" class="nav-item" data-module="reservas">
+          <span class="nav-icon">📅</span> Reservas
+        </a>
+        <a href="#" class="nav-item" data-module="productos">
+          <span class="nav-icon">🍕</span> Productos
+        </a>
+        <a href="#" class="nav-item" data-module="pedidos">
+          <span class="nav-icon">📋</span> Pedidos
+        </a>
+      </nav>
+ 
+      <div class="sidebar-footer">
+        <span id="sidebar-user" class="sidebar-user-name"></span>
+        <button id="btn-logout" class="btn btn-outline btn-sm">Salir</button>
+      </div>
+    </aside>
+ 
+    <!-- Contenido principal -->
+    <main class="main-content">
+      <div id="module-content">
+        <!-- Aquí se renderizan los módulos dinámicamente -->
+        <p class="placeholder-text">Selecciona un módulo del menú.</p>
+      </div>
+    </main>
+ 
+  </div>
+ 
+  <!-- Scripts -->
+  <script src="js/auth.js"></script>
+  <script src="js/mesas.js"></script>
+  <script src="js/reservas.js"></script>
+  <script src="js/productos.js"></script>
+  <script src="js/pedidos.js"></script>
+  <script src="js/app.js"></script>
+ 
+</body>
+</html>
