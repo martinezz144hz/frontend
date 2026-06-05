@@ -206,3 +206,5 @@ document.addEventListener('DOMContentLoaded', () => {
   // Validar si ya hay sesión activa
   validarSesion();
 });
+
+//brrrrr
