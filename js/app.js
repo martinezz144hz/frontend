@@ -186,3 +186,5 @@ function cerrarModal() {
   const modal = document.getElementById('modal-global');
   if (modal) modal.remove();
 }
+
+//brrrrr
