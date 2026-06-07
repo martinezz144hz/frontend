@@ -339,3 +339,5 @@ function formatearPrecio(precio) {
   if (!precio) return '0';
   return Number(precio).toLocaleString('es-CO');
 }
+
+//brrrrr
