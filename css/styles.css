@@ -1,4 +1,4 @@
-/* ── Design Tokens ─────────────────────────────────────── */
+
 :root {
   --bg:          #0e0f14;
   --bg-surface:  #16181f;
@@ -32,7 +32,7 @@
   --shadow-md: 0 8px 32px rgba(0,0,0,.5);
 }
 
-/* ── Reset ──────────────────────────────────────────────── */
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { font-size: 16px; scroll-behavior: smooth; }
@@ -46,7 +46,6 @@ body {
   min-height: 100vh;
 }
 
-/* ── Header ─────────────────────────────────────────────── */
 .site-header {
   position: sticky;
   top: 0;
@@ -103,7 +102,7 @@ body {
 .nav-link:hover { color: var(--text-primary); background: var(--bg-raised); }
 .nav-link.active { color: var(--accent); background: var(--accent-soft); }
 
-/* ── Page Hero ──────────────────────────────────────────── */
+
 .page-hero {
   max-width: 1280px;
   margin: 0 auto;
@@ -144,7 +143,6 @@ body {
   font-weight: 300;
 }
 
-/* ── Content Grid ───────────────────────────────────────── */
 .content-grid {
   max-width: 1280px;
   margin: 0 auto;
@@ -155,7 +153,7 @@ body {
   align-items: start;
 }
 
-/* ── Panels ─────────────────────────────────────────────── */
+
 .panel {
   background: var(--bg-surface);
   border: 1px solid var(--border);
@@ -190,7 +188,6 @@ body {
   border-radius: 99px;
 }
 
-/* ── Form fields ────────────────────────────────────────── */
 .field-group { margin-bottom: 1.1rem; }
 
 .field-label {
@@ -234,7 +231,7 @@ body {
 
 .field-error.hidden { display: none; }
 
-/* ── Buttons ────────────────────────────────────────────── */
+
 .form-actions {
   display: flex;
   gap: .75rem;
@@ -296,7 +293,6 @@ body {
   border-radius: var(--radius-sm);
 }
 
-/* ── Data Table ─────────────────────────────────────────── */
 .table-wrapper { overflow-x: auto; }
 
 .data-table {
@@ -368,7 +364,7 @@ body {
 }
 .action-btn--retro:hover { background: var(--success); color: #fff; }
 
-/* ── Sprint name cell ───────────────────────────────────── */
+
 .sprint-name {
   font-family: var(--font-head);
   font-weight: 600;
@@ -377,7 +373,7 @@ body {
 
 .date-cell { color: var(--text-secondary); font-size: .84rem; }
 
-/* ── Responsive ─────────────────────────────────────────── */
+
 @media (max-width: 860px) {
   .content-grid {
     grid-template-columns: 1fr;
