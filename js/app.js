@@ -1,6 +1,6 @@
-// ============================================
+
 // APP.JS — CONTROLADOR DE NAVEGACIÓN
-// ============================================
+
  
 // Módulo activo actualmente
 let moduloActivo = null;
@@ -13,9 +13,9 @@ const MODULOS = {
   pedidos:   renderPedidos,
 };
  
-// ============================================
+
 // NAVEGACIÓN ENTRE MÓDULOS
-// ============================================
+
  
 function cargarModulo(nombre) {
   if (moduloActivo === nombre) return;
@@ -39,9 +39,9 @@ function cargarModulo(nombre) {
   }
 }
  
-// ============================================
+
 // EVENTOS DEL SIDEBAR
-// ============================================
+
  
 document.addEventListener('DOMContentLoaded', () => {
   // Clic en items del sidebar
@@ -57,9 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Se llama desde mostrarPantallaMain() en auth.js
 });
  
-// ============================================
+
 // HOOK: se llama desde auth.js al mostrar el panel
-// ============================================
+
  
 // Sobreescribimos mostrarPantallaMain para que al entrar
 // cargue automáticamente el módulo "mesas"
@@ -71,9 +71,9 @@ function mostrarPantallaMain() {
   setTimeout(() => cargarModulo('mesas'), 0);
 }
  
-// ============================================
+
 // HELPER GLOBAL: mostrar mensajes en módulos
-// ============================================
+
  
 function mostrarAlerta(contenedor, mensaje, tipo = 'success') {
   const alerta = document.createElement('div');
@@ -86,9 +86,9 @@ function mostrarAlerta(contenedor, mensaje, tipo = 'success') {
   setTimeout(() => alerta.remove(), 3000);
 }
  
-// ============================================
+
 // HELPER GLOBAL: crear tabla genérica
-// ============================================
+
  
 function crearTabla(columnas, filas, accionesFn = null) {
   const table = document.createElement('table');
