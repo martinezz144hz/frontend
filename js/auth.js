@@ -2,10 +2,10 @@
 // CONFIGURACIÓN DE URLS DE MICROSERVICIOS
 // ============================================
 const API = {
-  auth:      'http://localhost:3010',
-  reservas:  'http://localhost:3020',
-  productos: 'http://localhost:3030',
-  pedidos:   'http://localhost:3040',
+    auth:      'http://127.0.0.1:3010',
+    reservas:  'http://127.0.0.1:3020',
+    productos: 'http://127.0.0.1:3030',
+    pedidos:   'http://127.0.0.1:3040',
 };
  
 // ============================================
