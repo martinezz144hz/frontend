@@ -1,5 +1,4 @@
-const URL_RESERVAS = 'http://127.0.0.1:3020/reservas';
-const URL_MESAS    = 'http://127.0.0.1:3020/mesas';
+const URL_MESAS_RESERVAS = 'http://127.0.0.1:3020/mesas';
 
 // ============================================
 // CARGAR MÓDULO RESERVAS
@@ -82,7 +81,7 @@ function filtrarReservas() {
 // CREAR RESERVA
 // ============================================
 async function mostrarFormCrearReserva() {
-    const resMesas = await fetchAuth(URL_MESAS);
+    const resMesas = await fetchAuth(URL_MESAS_RESERVAS);
     const mesas    = await resMesas.json();
 
     const opcionesMesas = mesas

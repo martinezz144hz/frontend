@@ -150,26 +150,27 @@ function abrirModalNuevaMesa() {
       </select>
     </div>
     <div id="msg-nueva-mesa"></div>
-  `, crearMesa);
+    <button class="btn btn-primary" onclick="crearMesa()">Guardar</button>
+  `);
 }
  
 async function crearMesa() {
   const numero    = document.getElementById('nueva-mesa-numero').value.trim();
   const capacidad = parseInt(document.getElementById('nueva-mesa-capacidad').value);
   const estado    = document.getElementById('nueva-mesa-estado').value;
- 
+
   if (!numero || !capacidad || capacidad < 1) {
     mostrarMsgModal('msg-nueva-mesa', 'Número y capacidad son requeridos.', 'error');
     return;
   }
- 
+
   try {
     const res = await fetchAuth(URL_MESAS, {
       method: 'POST',
       body: JSON.stringify({ numero, capacidad, estado }),
     });
     const data = await res.json();
- 
+
     if (res.ok) {
       cerrarModal();
       mostrarMsgMesas(data.message || 'Mesa creada correctamente.', 'success');
