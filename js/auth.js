@@ -178,11 +178,11 @@ async function fetchAuth(url, opciones = {}) {
   const response = await fetch(url, config);
  
   // Si el token expiró o es inválido, mandamos al login
-  if (response.status === 401) {
+if (response.status === 401) {
     limpiarSesion();
     mostrarPantallaLogin();
-    throw new Error('Sesión expirada.');
-  }
+    return response;
+}
  
   return response;
 }

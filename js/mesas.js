@@ -1,14 +1,14 @@
-// ============================================
-// MÓDULO DE MESAS
+
+
 // Puerto ms-reservas: 3020
-// ============================================
+
  
 const URL_MESAS = `${API.reservas}/mesas`;
  
-// ============================================
-// RENDER PRINCIPAL DEL MÓDULO
-// Llamado desde app.js al navegar a "mesas"
-// ============================================
+
+
+// Llamado desde app.js al navegar a mesas
+
  
 function renderMesas(contenedor) {
   contenedor.innerHTML = `
