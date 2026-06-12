@@ -1,4 +1,5 @@
 const URL_MESAS_RESERVAS = 'http://127.0.0.1:3020/mesas';
+const URL_RESERVAS = `${API.reservas}/reservas`;
 
 // ============================================
 // CARGAR MÓDULO RESERVAS
@@ -125,7 +126,7 @@ async function crearReserva() {
     const data = await res.json();
 
     if (res.ok) {
-        document.getElementById('modal').style.display = 'none';
+        cerrarModal();
         await renderReservas();
     } else {
         alert(data.message);
@@ -170,7 +171,7 @@ async function editarReserva(id) {
     const data = await res.json();
 
     if (res.ok) {
-        document.getElementById('modal').style.display = 'none';
+        cerrarModal();
         await renderReservas();
     } else {
         alert(data.message);
