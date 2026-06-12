@@ -68,8 +68,8 @@ function filtrarReservas() {
             r.hora,
             r.personas,
             r.estado,
-            `<button onclick="mostrarFormEditarReserva(${r.id})">Editar</button>
-             <button onclick="cancelarReserva(${r.id})">Cancelar</button>`
+           `<button class="btn btn-primary" onclick="mostrarFormCrearReserva()">+ Nueva Reserva</button>
+            <button class="btn btn-sm btn-outline" onclick="cancelarReserva(${r.id})">Cancelar</button>`
         ])
     );
 
