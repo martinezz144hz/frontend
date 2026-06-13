@@ -1,6 +1,4 @@
-// ============================================
-// CONFIGURACIÓN DE URLS DE MICROSERVICIOS
-// ============================================
+
 const API = {
     auth:      'http://127.0.0.1:3010',
     reservas:  'http://127.0.0.1:3020',
@@ -8,9 +6,9 @@ const API = {
     pedidos:   'http://127.0.0.1:3040',
 };
  
-// ============================================
-// MANEJO DE SESIÓN (token en localStorage)
-// ============================================
+
+// manejo de la sesion 
+
  
 function guardarSesion(token, usuario) {
   localStorage.setItem('token', token);
@@ -34,10 +32,8 @@ function haySesion() {
   return obtenerToken() !== null;
 }
  
-// ============================================
-// LOGIN
-// ============================================
- 
+// iniciar sesion
+
 async function login() {
   const usuario  = document.getElementById('login-user').value.trim();
   const password = document.getElementById('login-pass').value.trim();
@@ -78,9 +74,7 @@ async function login() {
   }
 }
  
-// ============================================
-// LOGOUT
-// ============================================
+//cerrar sesion
  
 async function logout() {
   const token = obtenerToken();
@@ -94,17 +88,13 @@ async function logout() {
       },
     });
   } catch (error) {
-    // Si el servidor falla igual limpiamos la sesión local
+    // Si el servidor falla igual se limpia la sesión 
     console.warn('No se pudo contactar ms-auth al cerrar sesión.');
   } finally {
     limpiarSesion();
     mostrarPantallaLogin();
   }
 }
- 
-// ============================================
-// VALIDAR SESIÓN AL CARGAR LA PÁGINA
-// ============================================
  
 async function validarSesion() {
   if (!haySesion()) {
@@ -131,9 +121,9 @@ async function validarSesion() {
   }
 }
  
-// ============================================
-// HELPERS DE PANTALLA
-// ============================================
+
+// helpers de pantalla
+
  
 function mostrarPantallaLogin() {
   document.getElementById('login-screen').classList.remove('hidden');
@@ -158,10 +148,9 @@ function mostrarError(div, mensaje) {
   div.classList.remove('hidden');
 }
  
-// ============================================
-// HELPER GLOBAL PARA FETCH AUTENTICADO
-// Úsalo en mesas.js, reservas.js, etc.
-// ============================================
+
+// helper global
+
  
 async function fetchAuth(url, opciones = {}) {
   const token = obtenerToken();
@@ -187,24 +176,17 @@ if (response.status === 401) {
   return response;
 }
  
-// ============================================
-// EVENTOS
-// ============================================
- 
 document.addEventListener('DOMContentLoaded', () => {
-  // Botón login
+
   document.getElementById('btn-login').addEventListener('click', login);
  
-  // Login con Enter
   document.getElementById('login-pass').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') login();
   });
- 
-  // Botón logout
+
   document.getElementById('btn-logout').addEventListener('click', logout);
  
-  // Validar si ya hay sesión activa
+  
   validarSesion();
 });
 
-//brrrrr

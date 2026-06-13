@@ -1,6 +1,6 @@
 
 
-// Puerto ms-reservas: 3020
+
 
  
 const URL_MESAS = `${API.reservas}/mesas`;
@@ -65,10 +65,7 @@ function renderMesas(contenedor) {
   // Cargar datos
   cargarMesas();
 }
- 
-// ============================================
-// CARGAR Y RENDERIZAR MESAS
-// ============================================
+
  
 async function cargarMesas() {
   try {
@@ -128,9 +125,7 @@ function formatearEstado(estado) {
   return map[estado] ?? estado;
 }
  
-// ============================================
-// CREAR MESA (modal genérico de app.js)
-// ============================================
+
  
 function abrirModalNuevaMesa() {
   abrirModal('Nueva Mesa', `
@@ -183,10 +178,6 @@ async function crearMesa() {
   }
 }
  
-// ============================================
-// EDITAR MESA
-// ============================================
- 
 async function abrirEditarMesa(id) {
   try {
     const res = await fetchAuth(`${URL_MESAS}/${id}`);
@@ -232,11 +223,7 @@ async function guardarEditarMesa() {
     mostrarMsgModal('msg-mesa-edit', 'Error de conexión.', 'error');
   }
 }
- 
-// ============================================
-// CAMBIAR ESTADO
-// ============================================
- 
+
 async function cambiarEstadoMesa(id, nuevoEstado) {
   if (!nuevoEstado) return;
  
@@ -256,10 +243,6 @@ async function cambiarEstadoMesa(id, nuevoEstado) {
     mostrarMsgMesas('Error de conexión.', 'error');
   }
 }
- 
-// ============================================
-// HELPERS LOCALES
-// ============================================
  
 function cerrarModalMesa() {
   const modal = document.getElementById('modal-editar-mesa');

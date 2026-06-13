@@ -1,12 +1,11 @@
-const URL_PEDIDOS   = 'http://127.0.0.1:3040/pedidos';
+const URL_PEDIDOS = 'http://127.0.0.1:3040/pedidos';
 const URL_PRODUCTOS_PEDIDO = 'http://127.0.0.1:3030/productos';
-
 
 async function cargarPedidos(contenedor) {
     contenedor.innerHTML = `
         <div class="modulo-header">
             <h2>Pedidos</h2>
-            <button onclick="mostrarFormCrearPedido()">+ Nuevo Pedido</button>
+            <button class="btn btn-primary" onclick="mostrarFormCrearPedido()">+ Nuevo Pedido</button>
         </div>
 
         <div class="filtros">
@@ -26,7 +25,6 @@ async function cargarPedidos(contenedor) {
 
     await renderPedidos();
 }
-
 
 async function renderPedidos() {
     const res  = await fetchAuth(URL_PEDIDOS);
@@ -60,15 +58,14 @@ function filtrarPedidos() {
             'Mesa ' + p.mesa_id,
             '$' + parseFloat(p.total).toFixed(2),
             p.estado,
-            `<button onclick="verDetallePedido(${p.id})">Ver detalle</button>
-             <button onclick="mostrarFormCambiarEstado(${p.id}, '${p.estado}')">Cambiar estado</button>`
+            `<button class="btn btn-sm btn-primary" onclick="verDetallePedido(${p.id})">Ver detalle</button>
+             <button class="btn btn-sm btn-outline" onclick="mostrarFormCambiarEstado(${p.id}, '${p.estado}')">Cambiar estado</button>`
         ])
     );
 
     contenedor.innerHTML = '';
     contenedor.appendChild(tabla);
 }
-
 
 async function verDetallePedido(id) {
     const res  = await fetchAuth(`${URL_PEDIDOS}/${id}`);
@@ -106,13 +103,13 @@ function mostrarFormCambiarEstado(id, estadoActual) {
     abrirModal('Cambiar Estado', `
         <p>Pedido #${id}</p>
         <select id="nuevo-estado">
-            <option value="pendiente"       ${estadoActual === 'pendiente'       ? 'selected' : ''}>Pendiente</option>
-            <option value="en preparacion"  ${estadoActual === 'en preparacion'  ? 'selected' : ''}>En preparación</option>
-            <option value="listo"           ${estadoActual === 'listo'           ? 'selected' : ''}>Listo</option>
-            <option value="entregado"       ${estadoActual === 'entregado'       ? 'selected' : ''}>Entregado</option>
-            <option value="cancelado"       ${estadoActual === 'cancelado'       ? 'selected' : ''}>Cancelado</option>
+            <option value="pendiente"      ${estadoActual === 'pendiente'      ? 'selected' : ''}>Pendiente</option>
+            <option value="en preparacion" ${estadoActual === 'en preparacion' ? 'selected' : ''}>En preparación</option>
+            <option value="listo"          ${estadoActual === 'listo'          ? 'selected' : ''}>Listo</option>
+            <option value="entregado"      ${estadoActual === 'entregado'      ? 'selected' : ''}>Entregado</option>
+            <option value="cancelado"      ${estadoActual === 'cancelado'      ? 'selected' : ''}>Cancelado</option>
         </select>
-        <button onclick="cambiarEstadoPedido(${id})">Guardar</button>
+        <button class="btn btn-primary" onclick="cambiarEstadoPedido(${id})">Guardar</button>
     `);
 }
 
@@ -121,14 +118,13 @@ async function cambiarEstadoPedido(id) {
 
     const res = await fetchAuth(`${URL_PEDIDOS}/${id}/estado`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ estado })
     });
 
     const data = await res.json();
 
     if (res.ok) {
-        document.getElementById('modal').style.display = 'none';
+        cerrarModal();
         await renderPedidos();
     } else {
         alert(data.message);
@@ -169,7 +165,7 @@ async function mostrarFormCrearPedido() {
                 ${opcionesProductos}
             </select>
             <input type="number" id="pedido-cantidad" value="1" min="1" style="width:60px;">
-            <button onclick="agregarAlCarrito()">Agregar</button>
+            <button class="btn btn-outline" onclick="agregarAlCarrito()">Agregar</button>
         </div>
 
         <hr>
@@ -177,7 +173,7 @@ async function mostrarFormCrearPedido() {
         <div id="carrito-lista"></div>
         <p><strong>Total: $<span id="carrito-total">0.00</span></strong></p>
 
-        <button onclick="crearPedido()">Confirmar Pedido</button>
+        <button class="btn btn-primary" onclick="crearPedido()">Confirmar Pedido</button>
     `);
 }
 
@@ -198,12 +194,13 @@ function agregarAlCarrito() {
         return;
     }
 
-    // Si ya está en el carro sumar cantidad
+    // Si ya está en el carrito sumar cantidad
     const existe = window._carrito.find(item => item.producto_id == id);
     if (existe) {
         existe.cantidad += cantidad;
         existe.subtotal  = existe.cantidad * existe.precio_unitario;
     } else {
+        // Producto nuevo — agregar al carrito
         window._carrito.push({
             producto_id:     id,
             producto_nombre: nombre,
@@ -212,6 +209,10 @@ function agregarAlCarrito() {
             subtotal:        cantidad * precio
         });
     }
+
+    // Resetear selección para poder agregar otro producto diferente
+    select.value = '';
+    document.getElementById('pedido-cantidad').value = 1;
 
     renderCarrito();
 }
@@ -256,7 +257,6 @@ async function crearPedido() {
 
     const res = await fetchAuth(URL_PEDIDOS, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             mesa_id,
             productos: window._carrito
@@ -266,7 +266,7 @@ async function crearPedido() {
     const data = await res.json();
 
     if (res.ok) {
-        document.getElementById('modal').style.display = 'none';
+        cerrarModal();
         await renderPedidos();
     } else {
         alert(data.message);

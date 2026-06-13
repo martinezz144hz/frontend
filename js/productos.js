@@ -1,13 +1,10 @@
 const URL_PRODUCTOS = 'http://127.0.0.1:3030/productos';
 
-// ============================================
-// CARGAR MÓDULO PRODUCTOS
-// ============================================
 async function cargarProductos(contenedor) {
     contenedor.innerHTML = `
         <div class="modulo-header">
             <h2>Productos</h2>
-            <button onclick="mostrarFormCrearProducto()">+ Nuevo Producto</button>
+            <button class="btn btn-primary" onclick="mostrarFormCrearProducto()">+ Nuevo Producto</button>
         </div>
 
         <div class="filtros">
@@ -27,9 +24,6 @@ async function cargarProductos(contenedor) {
     await renderProductos();
 }
 
-// ============================================
-// OBTENER Y RENDERIZAR PRODUCTOS
-// ============================================
 async function renderProductos() {
     const res  = await fetchAuth(URL_PRODUCTOS);
     const data = await res.json();
@@ -64,8 +58,8 @@ function filtrarProductos() {
             '$' + parseFloat(p.precio).toFixed(2),
             p.categoria,
             p.disponible == 1 ? 'Sí' : 'No',
-            `<button onclick="mostrarFormEditarProducto(${p.id})">Editar</button>
-             <button onclick="eliminarProducto(${p.id})">Eliminar</button>`
+            `<button class="btn btn-sm btn-primary" onclick="mostrarFormEditarProducto(${p.id})">Editar</button>
+ <button class="btn btn-sm btn-outline" onclick="eliminarProducto(${p.id})">Eliminar</button>`
         ])
     );
 
@@ -73,9 +67,6 @@ function filtrarProductos() {
     contenedor.appendChild(tabla);
 }
 
-// ============================================
-// CREAR PRODUCTO
-// ============================================
 function mostrarFormCrearProducto() {
     abrirModal('Nuevo Producto', `
         <input type="text"   id="p-nombre"      placeholder="Nombre *">
@@ -92,7 +83,7 @@ function mostrarFormCrearProducto() {
             <option value="1">Disponible</option>
             <option value="0">No disponible</option>
         </select>
-        <button onclick="crearProducto()">Guardar</button>
+        <button class="btn btn-primary" onclick="crearProducto()">Guardar</button>
     `);
 }
 
@@ -110,23 +101,19 @@ async function crearProducto() {
 
     const res = await fetchAuth(URL_PRODUCTOS, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nombre, descripcion, precio, categoria, disponible })
     });
 
     const data = await res.json();
 
     if (res.ok) {
-        document.getElementById('modal').style.display = 'none';
+        cerrarModal();
         await renderProductos();
     } else {
         alert(data.message);
     }
 }
 
-// ============================================
-// EDITAR PRODUCTO
-// ============================================
 function mostrarFormEditarProducto(id) {
     const p = window._productos.find(p => p.id === id);
 
@@ -144,7 +131,7 @@ function mostrarFormEditarProducto(id) {
             <option value="1" ${p.disponible == 1 ? 'selected' : ''}>Disponible</option>
             <option value="0" ${p.disponible == 0 ? 'selected' : ''}>No disponible</option>
         </select>
-        <button onclick="editarProducto(${p.id})">Guardar</button>
+        <button class="btn btn-primary" onclick="editarProducto(${p.id})">Guardar</button>
     `);
 }
 
@@ -157,23 +144,19 @@ async function editarProducto(id) {
 
     const res = await fetchAuth(`${URL_PRODUCTOS}/${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nombre, descripcion, precio, categoria, disponible })
     });
 
     const data = await res.json();
 
     if (res.ok) {
-        document.getElementById('modal').style.display = 'none';
+        cerrarModal();
         await renderProductos();
     } else {
         alert(data.message);
     }
 }
 
-// ============================================
-// ELIMINAR PRODUCTO
-// ============================================
 async function eliminarProducto(id) {
     if (!confirm('¿Está seguro de eliminar este producto?')) return;
 

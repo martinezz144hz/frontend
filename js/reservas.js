@@ -1,14 +1,11 @@
 const URL_MESAS_RESERVAS = 'http://127.0.0.1:3020/mesas';
 const URL_RESERVAS = `${API.reservas}/reservas`;
 
-// ============================================
-// CARGAR MÓDULO RESERVAS
-// ============================================
 async function cargarReservas(contenedor) {
     contenedor.innerHTML = `
         <div class="modulo-header">
             <h2>Reservas</h2>
-            <button onclick="mostrarFormCrearReserva()">+ Nueva Reserva</button>
+            <button class="btn btn-primary" onclick="mostrarFormCrearReserva()">+ Nueva Reserva</button>
         </div>
 
         <div class="filtros">
@@ -28,9 +25,6 @@ async function cargarReservas(contenedor) {
     await renderReservas();
 }
 
-// ============================================
-// OBTENER Y RENDERIZAR RESERVAS
-// ============================================
 async function renderReservas() {
     const res  = await fetchAuth(URL_RESERVAS);
     const data = await res.json();
@@ -78,9 +72,6 @@ function filtrarReservas() {
     contenedor.appendChild(tabla);
 }
 
-// ============================================
-// CREAR RESERVA
-// ============================================
 async function mostrarFormCrearReserva() {
     const resMesas = await fetchAuth(URL_MESAS_RESERVAS);
     const mesas    = await resMesas.json();
@@ -133,9 +124,6 @@ async function crearReserva() {
     }
 }
 
-// ============================================
-// EDITAR RESERVA
-// ============================================
 function mostrarFormEditarReserva(id) {
     const r = window._reservas.find(r => r.id === id);
 
@@ -178,9 +166,6 @@ async function editarReserva(id) {
     }
 }
 
-// ============================================
-// CANCELAR RESERVA
-// ============================================
 async function cancelarReserva(id) {
     if (!confirm('¿Está seguro de cancelar esta reserva?')) return;
 

@@ -1,9 +1,9 @@
-// APP.JS — CONTROLADOR DE NAVEGACIÓN
 
-// Módulo activo actualmente
+
+
 let moduloActivo = null;
 
-// Mapa de módulos: nombre => función que renderiza el módulo
+// Mapa de módulos función que renderiza el módulo
 const MODULOS = {
   mesas:     renderMesas,
   reservas:  cargarReservas,
@@ -11,15 +11,15 @@ const MODULOS = {
   pedidos:   cargarPedidos,
 };
 
-// ============================================
-// NAVEGACIÓN ENTRE MÓDULOS
-// ============================================
+
+// navegacion de los modulos
+
 
 function cargarModulo(nombre) {
   if (moduloActivo === nombre) return;
   moduloActivo = nombre;
 
-  // Marcar el nav-item activo en el sidebar
+  // Marcar el navitem activo en el sidebar
   document.querySelectorAll('.nav-item').forEach(item => {
     item.classList.toggle('active', item.dataset.module === nombre);
   });
@@ -37,9 +37,7 @@ function cargarModulo(nombre) {
   }
 }
 
-// ============================================
-// EVENTOS DEL SIDEBAR
-// ============================================
+// eventos del sidebar
 
 document.addEventListener('DOMContentLoaded', () => {
   // Clic en items del sidebar
@@ -52,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// ============================================
-// HELPER GLOBAL: mostrar mensajes en módulos
-// ============================================
+
+// mostrar mensajes en módulos
+
 
 function mostrarAlerta(contenedor, mensaje, tipo = 'success') {
   const alerta = document.createElement('div');
@@ -66,9 +64,8 @@ function mostrarAlerta(contenedor, mensaje, tipo = 'success') {
   setTimeout(() => alerta.remove(), 3000);
 }
 
-// ============================================
-// HELPER GLOBAL: crear tabla genérica
-// ============================================
+//  crear tabla genérica
+
 
 function crearTabla(columnas, filas) {
   const table = document.createElement('table');
@@ -111,9 +108,7 @@ function crearTabla(columnas, filas) {
   return table;
 }
 
-// ============================================
-// HELPER GLOBAL: crear modal genérico
-// ============================================
+//  crear modal genérico
 
 function abrirModal(titulo, htmlContenido) {
   const modalExistente = document.getElementById('modal-global');
