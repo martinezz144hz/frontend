@@ -3,20 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Restaurante XYZ — Panel de Gestión</title>
+  <title> restaurante los sigmas — Panel de Gestión</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
- 
-  
   <div id="login-screen" class="screen active">
     <div class="login-box">
-      <div class="login-logo"></div>
-      <h1 class="login-title">Restaurante XYZ</h1>
-      <p class="login-subtitle">Panel de Gestión</p>
- 
+     <img src="images/logo.jpg" class="login-logo" alt="Logo" />
+      <h1 class="login-title">restaurante los sigmas</h1>
+      <p class="login-subtitle">la comida mas maquiavelica de tunja</p>
       <div id="login-error" class="alert alert-error hidden"></div>
- 
       <div class="form-group">
         <label for="login-user">Usuario o correo</label>
         <input type="text" id="login-user" placeholder="usuario@email.com" />
@@ -28,16 +24,12 @@
       <button id="btn-login" class="btn btn-primary btn-full">Ingresar</button>
     </div>
   </div>
- 
   <div id="main-screen" class="screen hidden">
- 
-    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-header">
-        <span class="sidebar-logo"></span>
-        <span class="sidebar-title">Restaurante XYZ</span>
+       <img src="images/logo.jpg" class="sidebar-logo" alt="Logo" />
+        <span class="sidebar-title">restaurante los sigmas</span>
       </div>
- 
       <nav class="sidebar-nav">
         <a href="#" class="nav-item active" data-module="mesas">
           <span class="nav-icon"></span> Mesas
@@ -52,30 +44,28 @@
           <span class="nav-icon"></span> Pedidos
         </a>
       </nav>
- 
       <div class="sidebar-footer">
         <span id="sidebar-user" class="sidebar-user-name"></span>
         <button id="btn-logout" class="btn btn-outline btn-sm">Salir</button>
       </div>
     </aside>
- 
-    
     <main class="main-content">
       <div id="module-content">
-        <!--   renderizado de los módulos dinámicamente -->
         <p class="placeholder-text">Selecciona un módulo del menú.</p>
       </div>
     </main>
- 
+    <aside class="panel-lateral">
+      <img src="images/chef.jpg" class="panel-lateral-img" alt="Chef" />
+      <p class="panel-lateral-texto">comida para chuparse los dedos, 
+        que riko
+      </p>
+    </aside>
   </div>
-
-  
   <script src="js/auth.js"></script>
   <script src="js/mesas.js"></script>
   <script src="js/reservas.js"></script>
   <script src="js/productos.js"></script>
   <script src="js/pedidos.js"></script>
   <script src="js/app.js"></script>
- 
 </body>
 </html>
